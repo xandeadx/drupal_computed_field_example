@@ -1,0 +1,6 @@
+name: Computed field example
+type: module
+description: Example module.
+package: Example
+core: 8.x
+core_version_requirement: ^8 || ^9

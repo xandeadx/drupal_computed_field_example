@@ -1,0 +1,26 @@
+<?php
+
+use Drupal\computed_field_example\ComputedNodeAgeFieldItemList;
+use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Field\BaseFieldDefinition;
+
+/**
+ * Implements hook_entity_base_field_info().
+ */
+function computed_field_example_entity_base_field_info(EntityTypeInterface $entity_type): ?array {
+  if ($entity_type->id() == 'node') {
+    $fields['age'] = BaseFieldDefinition::create('integer')
+      ->setLabel(t('Age'))
+      ->setComputed(TRUE)
+      ->setClass(ComputedNodeAgeFieldItemList::class)
+      ->setReadOnly(TRUE)
+      ->setDisplayConfigurable('view', TRUE)
+      ->setDisplayOptions('view', [
+        'type' => 'number_integer',
+      ]);
+
+    return $fields;
+  }
+
+  return NULL;
+}
